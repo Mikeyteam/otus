@@ -1,4 +1,4 @@
-module github.com/mikeyteam/hw01_hello_otus
+module github.com/Mikeyteam/otus/tree/master/hw01_hello_otus
 
 go 1.17
 
