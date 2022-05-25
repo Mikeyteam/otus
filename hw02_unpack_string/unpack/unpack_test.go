@@ -45,18 +45,21 @@ func TestUnpackInvalidString(t *testing.T) {
 		})
 	}
 }
+
 func TestStringOnlyDigit(t *testing.T) {
 	input := "78784564"
 	if result, err := Unpack(input); err == nil {
 		t.Errorf("Строка содержит толькко цифры \"%s\", expect error", result)
 	}
 }
+
 func TestWrongSymbolSequence(t *testing.T) {
 	input := "a2b37"
 	if result, err := Unpack(input); err == nil {
 		t.Errorf("Неверная последовательность символов \"%s\", expect error", result)
 	}
 }
+
 func TestIsSymbolDigit(t *testing.T) {
 	digitsRunes := []rune("0123456789")
 	for _, digitRune := range digitsRunes {
