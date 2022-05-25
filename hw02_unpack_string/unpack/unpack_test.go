@@ -61,14 +61,14 @@ func TestWrongSymbolSequence(t *testing.T) {
 }
 
 func TestIsSymbolDigit(t *testing.T) {
-	digitsRunes := []rune("0123456789")
+	digitsRunes := string([]rune("0123456789"))
 	for _, digitRune := range digitsRunes {
 		if !unicode.IsDigit(digitRune) {
 			t.Errorf("Символ \"%s\" не цифра", string(digitRune))
 		}
 	}
 
-	invalidDigitsRunes := []rune("abcXYZ!@#")
+	invalidDigitsRunes := string([]rune("abcXYZ!@#"))
 	for _, digitRune := range invalidDigitsRunes {
 		if unicode.IsDigit(digitRune) {
 			t.Errorf("Символ \"%s\" цифра", string(digitRune))
@@ -77,14 +77,14 @@ func TestIsSymbolDigit(t *testing.T) {
 }
 
 func TestIsSymbolEscape(t *testing.T) {
-	validEscapeRunes := []rune(`\`)
+	validEscapeRunes := string([]rune(`\`))
 	for _, escapeRune := range validEscapeRunes {
 		if !isSymbolEscape(escapeRune) {
 			t.Errorf("Символ \"%s\" не пробел", string(escapeRune))
 		}
 	}
 
-	invalidEscapeRunes := []rune(`|/#@!`)
+	invalidEscapeRunes := string([]rune(`|/#@!`))
 	for _, escapeRune := range invalidEscapeRunes {
 		if isSymbolEscape(escapeRune) {
 			t.Errorf("Символ \"%s\" пробел", string(escapeRune))

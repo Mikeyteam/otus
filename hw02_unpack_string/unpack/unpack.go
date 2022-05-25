@@ -39,7 +39,6 @@ func Unpack(str string) (string, error) {
 			stringBuffer = string(symbol)
 			flag = false
 			continue
-
 		}
 		stringBuffer = string(symbol)
 	}
@@ -49,7 +48,7 @@ func Unpack(str string) (string, error) {
 	return resultString.String(), nil
 }
 
-// Проверка. Символ это пробел
+// Проверка. Символ это пробел.
 func isSymbolEscape(r rune) bool {
 	return r == 92
 }
