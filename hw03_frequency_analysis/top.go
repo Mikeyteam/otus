@@ -19,7 +19,7 @@ func Top10(s string) []string {
 
 // cleanText delete from text special char, change this on space.
 func cleanText(text string) []string {
-	str := strings.Join(strings.Fields(text)[:], " ")
+	str := strings.Join(strings.Fields(text), " ")
 	replacer := regexp.MustCompile(`[/s]+`)
 	replaceStr := replacer.ReplaceAllString(str, " ")
 	result := strings.Split(strings.TrimSpace(replaceStr), " ")
