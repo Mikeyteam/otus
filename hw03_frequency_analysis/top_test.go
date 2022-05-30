@@ -2,12 +2,10 @@ package hw03frequencyanalysis
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/require"
 )
 
 // Change to true if needed.
-var taskWithAsteriskIsCompleted = false
+// var taskWithAsteriskIsCompleted = false
 
 var text = `Как видите, он  спускается  по  лестнице  вслед  за  своим
 	другом   Кристофером   Робином,   головой   вниз,  пересчитывая
@@ -43,9 +41,9 @@ var text = `Как видите, он  спускается  по  лестни�
 	посидеть у огня и послушать какую-нибудь интересную сказку.
 		В этот вечер...`
 
-func TestTop10(t *testing.T) {
+/*func TestTop10(t *testing.T) {
 	t.Run("no words in empty string", func(t *testing.T) {
-		require.Len(t, Top10(""), 0)
+		require.Len(t, Top10(text), 0)
 	})
 
 	t.Run("positive test", func(t *testing.T) {
@@ -79,4 +77,32 @@ func TestTop10(t *testing.T) {
 			require.Equal(t, expected, Top10(text))
 		}
 	})
+}*/
+
+func TestCountWordsResult(t *testing.T) {
+	input := "Как видите, он спускается  по  лестнице  вслед"
+	count := 0
+	for range Top10(input) {
+		count++
+	}
+	if count != 7 {
+		t.Errorf("Not corrects words count: expect 7, got %d", count)
+	}
+}
+
+func TestCountMaxWords(t *testing.T) {
+	count := 0
+	for range Top10(text) {
+		count++
+	}
+	if count != 10 {
+		t.Errorf("Not corrects words count: expect 10, got %d", count)
+	}
+}
+
+func TestEmptyString(t *testing.T) {
+	input := ""
+	if result := Top10(input); result == nil {
+		t.Errorf("corrects string  \"%s\" ", result)
+	}
 }
