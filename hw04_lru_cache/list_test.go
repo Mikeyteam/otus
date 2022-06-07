@@ -48,4 +48,39 @@ func TestList(t *testing.T) {
 		}
 		require.Equal(t, []int{70, 80, 60, 40, 10, 30, 50}, elems)
 	})
+
+	t.Run("list symbol", func(t *testing.T) {
+		l := NewList()
+
+		l.PushFront("a") // [a]
+		l.PushBack("b")  // [a, b]
+		l.PushBack("c")  // [a, b, c]
+		require.Equal(t, 3, l.Len())
+	})
+
+	t.Run("list symbol", func(t *testing.T) {
+		l := NewList()
+
+		l.PushFront("a") // [a]
+		l.PushBack("b")  // [a, b]
+		l.PushBack("c")  // [a, b, c]
+		require.Equal(t, 3, l.Len())
+	})
+
+	t.Run("list symbol another", func(t *testing.T) {
+		l := NewList()
+
+		l.PushFront("$") // [$]
+		l.PushBack("&")  // [$, &]
+		l.PushBack("@")  // [$, &, @]
+		require.Equal(t, 3, l.Len())
+	})
+
+	t.Run("remove on empty list", func(t *testing.T) {
+		l := NewList()
+
+		firstItem := l.Front()
+		l.Remove(firstItem)
+		require.Equal(t, 0, l.Len())
+	})
 }
