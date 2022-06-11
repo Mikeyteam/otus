@@ -9,7 +9,6 @@ import (
 func TestList(t *testing.T) {
 	t.Run("empty list", func(t *testing.T) {
 		l := NewList()
-
 		require.Equal(t, 0, l.Len())
 		require.Nil(t, l.Front())
 		require.Nil(t, l.Back())
@@ -17,7 +16,6 @@ func TestList(t *testing.T) {
 
 	t.Run("complex", func(t *testing.T) {
 		l := NewList()
-
 		l.PushFront(10) // [10]
 		l.PushBack(20)  // [10, 20]
 		l.PushBack(30)  // [10, 20, 30]
@@ -47,5 +45,48 @@ func TestList(t *testing.T) {
 			elems = append(elems, i.Value.(int))
 		}
 		require.Equal(t, []int{70, 80, 60, 40, 10, 30, 50}, elems)
+	})
+
+	t.Run("list symbol", func(t *testing.T) {
+		l := NewList()
+		l.PushFront("a") // [a]
+		l.PushBack("b")  // [a, b]
+		l.PushBack("c")  // [a, b, c]
+		require.Equal(t, 3, l.Len())
+	})
+
+	t.Run("list symbol", func(t *testing.T) {
+		l := NewList()
+		l.PushFront("a") // [a]
+		l.PushBack("b")  // [a, b]
+		l.PushBack("c")  // [a, b, c]
+		require.Equal(t, 3, l.Len())
+	})
+
+	t.Run("list symbol another", func(t *testing.T) {
+		l := NewList()
+		l.PushFront("$") // [$]
+		l.PushBack("&")  // [$, &]
+		l.PushBack("@")  // [$, &, @]
+		require.Equal(t, 3, l.Len())
+	})
+
+	t.Run("remove on empty list", func(t *testing.T) {
+		l := NewList()
+		firstItem := l.Front()
+		l.Remove(firstItem)
+		require.Equal(t, 0, l.Len())
+	})
+
+	t.Run("push nil to front", func(t *testing.T) {
+		l := NewList()
+		l.PushFront(nil)
+		require.Equal(t, 1, l.Len())
+	})
+
+	t.Run("push nil to back", func(t *testing.T) {
+		l := NewList()
+		l.PushBack(nil)
+		require.Equal(t, 1, l.Len())
 	})
 }

@@ -50,7 +50,47 @@ func TestCache(t *testing.T) {
 	})
 
 	t.Run("purge logic", func(t *testing.T) {
-		// Write me
+		c := NewCache(10)
+
+		c.Set("aaa", 300)
+		c.Clear()
+		require.Equal(t, 0, 0)
+	})
+
+	t.Run("overwrite value in cache", func(t *testing.T) {
+		c := NewCache(10)
+
+		c.Set("aaa", 300)
+		c.Set("aaa", 301)
+		require.Equal(t, 301, 301)
+	})
+
+	t.Run("overflow cache", func(t *testing.T) {
+		c := NewCache(1)
+
+		c.Set("aaa", 300)
+		c.Set("aab", 302)
+		val, _ := c.Get("aaa")
+		require.Equal(t, nil, val)
+	})
+
+	t.Run("key cache is symbol", func(t *testing.T) {
+		c := NewCache(10)
+
+		c.Set("$", 300)
+		c.Set("^", 302)
+		val, _ := c.Get("$")
+		val1, _ := c.Get("^")
+		require.Equal(t, 300, val)
+		require.Equal(t, 302, val1)
+	})
+
+	t.Run("value cache is nil", func(t *testing.T) {
+		c := NewCache(10)
+
+		c.Set("aaa", nil)
+		val, _ := c.Get("aaa")
+		require.Equal(t, nil, val)
 	})
 }
 
