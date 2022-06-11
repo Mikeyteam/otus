@@ -92,7 +92,6 @@ func TestCache(t *testing.T) {
 		val, _ := c.Get("aaa")
 		require.Equal(t, nil, val)
 	})
-
 }
 
 func TestCacheMultithreading(t *testing.T) {
