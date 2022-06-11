@@ -84,6 +84,15 @@ func TestCache(t *testing.T) {
 		require.Equal(t, 300, val)
 		require.Equal(t, 302, val1)
 	})
+
+	t.Run("value cache is nil", func(t *testing.T) {
+		c := NewCache(10)
+
+		c.Set("aaa", nil)
+		val, _ := c.Get("aaa")
+		require.Equal(t, nil, val)
+	})
+
 }
 
 func TestCacheMultithreading(t *testing.T) {

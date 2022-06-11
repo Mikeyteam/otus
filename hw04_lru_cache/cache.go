@@ -36,7 +36,7 @@ func (c *lruCache) Set(key Key, value interface{}) bool {
 	defer c.mutex.Unlock()
 
 	listItemValue := &cacheItem{
-		key:   Key(string(key)),
+		key:   key,
 		value: value,
 	}
 
@@ -49,7 +49,7 @@ func (c *lruCache) Set(key Key, value interface{}) bool {
 		toRemoveItem := c.queue.Back()
 		c.queue.Remove(toRemoveItem)
 		keyName := toRemoveItem.Value.(*cacheItem).key
-		delete(c.items, Key(keyName))
+		delete(c.items, keyName)
 	}
 
 	listItem := c.queue.PushFront(listItemValue)
