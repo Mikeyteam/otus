@@ -9,7 +9,7 @@ export UNSET="SHOULD_REMOVE"
 export ADDED="from original env"
 export EMPTY="SHOULD_BE_EMPTY"
 
-result=$(./go-envdir "$(pwd)/testdata/env" "/bin/bash" "$(pwd)/testdata/echo.sh" arg1=1 arg2=2)
+result=$(./go-envdir "$(pwd)/testdata/env1" "/bin/bash" "$(pwd)/testdata/echo.sh" arg1=1 arg2=2)
 expected='HELLO is ("hello")
 BAR is (bar)
 FOO is (   foo
